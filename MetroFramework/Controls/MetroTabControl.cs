@@ -267,6 +267,12 @@ namespace MetroFramework.Controls
             }
         }
 
+        public ImageList Images
+        {
+            get { return base.ImageList; }
+            set { base.ImageList = value; }
+        }
+
         #endregion
 
         #region Constructor
@@ -426,6 +432,12 @@ namespace MetroFramework.Controls
             using (Brush bgBrush = new SolidBrush(backColor))
             {
                 graphics.FillRectangle(bgBrush, bgRect);
+            }
+
+            if (ImageList != null && tabPage.ImageIndex > -1)
+            {
+                graphics.DrawImage(ImageList.Images[tabPage.ImageIndex], tabRect.X + 2, (tabRect.Height / 2) - (ImageList.ImageSize.Height / 2) + (ImageList.ImageSize.Height / 8));
+                tabRect.X += ImageList.ImageSize.Width + 4;
             }
 
             TextRenderer.DrawText(graphics, tabPage.Text, MetroFonts.TabControl(metroLabelSize, metroLabelWeight),
