@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2010
+# Visual Studio 14
+VisualStudioVersion = 14.0.22823.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetroFramework", "MetroFramework\MetroFramework.csproj", "{BB41AC8B-CBED-4387-A7E0-4567EDB3F57F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetroFramework.Demo", "MetroFramework.Demo\MetroFramework.Demo.csproj", "{AF988819-4618-4852-9506-C1D06D04F6B2}"
@@ -18,6 +20,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetroFramework.Design", "MetroFramework.Design\MetroFramework.Design.csproj", "{7316584D-9A16-4280-A8AB-6D45198C6E4D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetroFramework.Fonts", "MetroFramework.Fonts\MetroFramework.Fonts.csproj", "{5A2FCAE8-C2FA-41BD-90EA-16103EA07B26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingGround", "TestingGround\TestingGround.csproj", "{4094360A-67B1-4F4B-9D9F-A3F024610FA3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +45,10 @@ Global
 		{5A2FCAE8-C2FA-41BD-90EA-16103EA07B26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A2FCAE8-C2FA-41BD-90EA-16103EA07B26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A2FCAE8-C2FA-41BD-90EA-16103EA07B26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4094360A-67B1-4F4B-9D9F-A3F024610FA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4094360A-67B1-4F4B-9D9F-A3F024610FA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4094360A-67B1-4F4B-9D9F-A3F024610FA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4094360A-67B1-4F4B-9D9F-A3F024610FA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
