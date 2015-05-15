@@ -33,3 +33,4 @@ cd %cwd%
 goto exit
 
 :exit
+pause
