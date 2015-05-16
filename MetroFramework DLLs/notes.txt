@@ -1,0 +1,1 @@
+When building the solution, all the dll's are copied here for easy reference to other projects
