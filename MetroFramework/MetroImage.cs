@@ -30,20 +30,16 @@ namespace MetroFramework
     {
         public static Image ResizeImage(Image imgToResize, Rectangle maxOffset)
         {
-            int sourceWidth = imgToResize.Width;
-            int sourceHeight = imgToResize.Height;
+            var sourceWidth = imgToResize.Width;
+            var sourceHeight = imgToResize.Height;
 
-            float nPercent = 0;
-            float nPercentW = 0;
-            float nPercentH = 0;
+            var nPercentW = (float)maxOffset.Width / sourceWidth;
+            var nPercentH = (float)maxOffset.Height / sourceHeight;
 
-            nPercentW = (float)maxOffset.Width / sourceWidth;
-            nPercentH = (float)maxOffset.Height / sourceHeight;
+            var nPercent = nPercentH < nPercentW ? nPercentH : nPercentW;
 
-            nPercent = nPercentH < nPercentW ? nPercentH : nPercentW;
-
-            int destWidth = (int)(sourceWidth * nPercent);
-            int destHeight = (int)(sourceHeight * nPercent);
+            var destWidth = (int)(sourceWidth * nPercent);
+            var destHeight = (int)(sourceHeight * nPercent);
 
             return imgToResize.GetThumbnailImage(destWidth, destHeight, null, IntPtr.Zero);
         }

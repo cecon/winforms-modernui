@@ -23,10 +23,6 @@
  */
 using System.Diagnostics;
 using System.Drawing;
-using System.IO;
-using System.Runtime.InteropServices;
-using System.Reflection;
-using System.Drawing.Text;
 using System;
 
 namespace MetroFramework
@@ -189,7 +185,7 @@ namespace MetroFramework
             }
         }
 
-        private static IMetroFontResolver FontResolver;
+        private static readonly IMetroFontResolver FontResolver;
 
         static MetroFonts()
         {
@@ -243,7 +239,29 @@ namespace MetroFramework
 
         public static Font Tile(MetroTileTextSize labelSize, MetroTileTextWeight labelWeight)
         {
-            if (labelSize == MetroTileTextSize.Small)
+            if (labelSize != MetroTileTextSize.Small)
+            {
+                if (labelSize != MetroTileTextSize.Medium)
+                {
+                    if (labelSize != MetroTileTextSize.Tall) return DefaultLight(14f);
+                    if (labelWeight == MetroTileTextWeight.Light)
+                        return DefaultLight(18f);
+                    if (labelWeight == MetroTileTextWeight.Regular)
+                        return Default(18f);
+                    if (labelWeight == MetroTileTextWeight.Bold)
+                        return DefaultBold(18f);
+                }
+                else
+                {
+                    if (labelWeight == MetroTileTextWeight.Light)
+                        return DefaultLight(14f);
+                    if (labelWeight == MetroTileTextWeight.Regular)
+                        return Default(14f);
+                    if (labelWeight == MetroTileTextWeight.Bold)
+                        return DefaultBold(14f);
+                }
+            }
+            else
             {
                 if (labelWeight == MetroTileTextWeight.Light)
                     return DefaultLight(12f);
@@ -251,24 +269,6 @@ namespace MetroFramework
                     return Default(12f);
                 if (labelWeight == MetroTileTextWeight.Bold)
                     return DefaultBold(12f);
-            }
-            else if (labelSize == MetroTileTextSize.Medium)
-            {
-                if (labelWeight == MetroTileTextWeight.Light)
-                    return DefaultLight(14f);
-                if (labelWeight == MetroTileTextWeight.Regular)
-                    return Default(14f);
-                if (labelWeight == MetroTileTextWeight.Bold)
-                    return DefaultBold(14f);
-            }
-            else if (labelSize == MetroTileTextSize.Tall)
-            {
-                if (labelWeight == MetroTileTextWeight.Light)
-                    return DefaultLight(18f);
-                if (labelWeight == MetroTileTextWeight.Regular)
-                    return Default(18f);
-                if (labelWeight == MetroTileTextWeight.Bold)
-                    return DefaultBold(18f);
             }
 
             return DefaultLight(14f);
@@ -281,32 +281,32 @@ namespace MetroFramework
 
         public static Font Link(MetroLinkSize linkSize, MetroLinkWeight linkWeight)
         {
-            if (linkSize == MetroLinkSize.Small)
+            switch (linkSize)
             {
-                if (linkWeight == MetroLinkWeight.Light)
-                    return DefaultLight(12f);
-                if (linkWeight == MetroLinkWeight.Regular)
-                    return Default(12f);
-                if (linkWeight == MetroLinkWeight.Bold)
-                    return DefaultBold(12f);
-            }
-            else if (linkSize == MetroLinkSize.Medium)
-            {
-                if (linkWeight == MetroLinkWeight.Light)
-                    return DefaultLight(14f);
-                if (linkWeight == MetroLinkWeight.Regular)
-                    return Default(14f);
-                if (linkWeight == MetroLinkWeight.Bold)
-                    return DefaultBold(14f);
-            }
-            else if (linkSize == MetroLinkSize.Tall)
-            {
-                if (linkWeight == MetroLinkWeight.Light)
-                    return DefaultLight(18f);
-                if (linkWeight == MetroLinkWeight.Regular)
-                    return Default(18f);
-                if (linkWeight == MetroLinkWeight.Bold)
-                    return DefaultBold(18f);
+                case MetroLinkSize.Small:
+                    if (linkWeight == MetroLinkWeight.Light)
+                        return DefaultLight(12f);
+                    if (linkWeight == MetroLinkWeight.Regular)
+                        return Default(12f);
+                    if (linkWeight == MetroLinkWeight.Bold)
+                        return DefaultBold(12f);
+                    break;
+                case MetroLinkSize.Medium:
+                    if (linkWeight == MetroLinkWeight.Light)
+                        return DefaultLight(14f);
+                    if (linkWeight == MetroLinkWeight.Regular)
+                        return Default(14f);
+                    if (linkWeight == MetroLinkWeight.Bold)
+                        return DefaultBold(14f);
+                    break;
+                case MetroLinkSize.Tall:
+                    if (linkWeight == MetroLinkWeight.Light)
+                        return DefaultLight(18f);
+                    if (linkWeight == MetroLinkWeight.Regular)
+                        return Default(18f);
+                    if (linkWeight == MetroLinkWeight.Bold)
+                        return DefaultBold(18f);
+                    break;
             }
 
             return Default(12f);
@@ -314,32 +314,32 @@ namespace MetroFramework
 
         public static Font ComboBox(MetroComboBoxSize linkSize, MetroComboBoxWeight linkWeight)
         {
-            if (linkSize == MetroComboBoxSize.Small)
+            switch (linkSize)
             {
-                if (linkWeight == MetroComboBoxWeight.Light)
-                    return DefaultLight(12f);
-                if (linkWeight == MetroComboBoxWeight.Regular)
-                    return Default(12f);
-                if (linkWeight == MetroComboBoxWeight.Bold)
-                    return DefaultBold(12f);
-            }
-            else if (linkSize == MetroComboBoxSize.Medium)
-            {
-                if (linkWeight == MetroComboBoxWeight.Light)
-                    return DefaultLight(14f);
-                if (linkWeight == MetroComboBoxWeight.Regular)
-                    return Default(14f);
-                if (linkWeight == MetroComboBoxWeight.Bold)
-                    return DefaultBold(14f);
-            }
-            else if (linkSize == MetroComboBoxSize.Tall)
-            {
-                if (linkWeight == MetroComboBoxWeight.Light)
-                    return DefaultLight(18f);
-                if (linkWeight == MetroComboBoxWeight.Regular)
-                    return Default(18f);
-                if (linkWeight == MetroComboBoxWeight.Bold)
-                    return DefaultBold(18f);
+                case MetroComboBoxSize.Small:
+                    if (linkWeight == MetroComboBoxWeight.Light)
+                        return DefaultLight(12f);
+                    if (linkWeight == MetroComboBoxWeight.Regular)
+                        return Default(12f);
+                    if (linkWeight == MetroComboBoxWeight.Bold)
+                        return DefaultBold(12f);
+                    break;
+                case MetroComboBoxSize.Medium:
+                    if (linkWeight == MetroComboBoxWeight.Light)
+                        return DefaultLight(14f);
+                    if (linkWeight == MetroComboBoxWeight.Regular)
+                        return Default(14f);
+                    if (linkWeight == MetroComboBoxWeight.Bold)
+                        return DefaultBold(14f);
+                    break;
+                case MetroComboBoxSize.Tall:
+                    if (linkWeight == MetroComboBoxWeight.Light)
+                        return DefaultLight(18f);
+                    if (linkWeight == MetroComboBoxWeight.Regular)
+                        return Default(18f);
+                    if (linkWeight == MetroComboBoxWeight.Bold)
+                        return DefaultBold(18f);
+                    break;
             }
 
             return Default(12f);
@@ -347,32 +347,32 @@ namespace MetroFramework
 
         public static Font DateTime(MetroDateTimeSize linkSize, MetroDateTimeWeight linkWeight)
         {
-            if (linkSize == MetroDateTimeSize.Small)
+            switch (linkSize)
             {
-                if (linkWeight == MetroDateTimeWeight.Light)
-                    return DefaultLight(12f);
-                if (linkWeight == MetroDateTimeWeight.Regular)
-                    return Default(12f);
-                if (linkWeight == MetroDateTimeWeight.Bold)
-                    return DefaultBold(12f);
-            }
-            else if (linkSize == MetroDateTimeSize.Medium)
-            {
-                if (linkWeight == MetroDateTimeWeight.Light)
-                    return DefaultLight(14f);
-                if (linkWeight == MetroDateTimeWeight.Regular)
-                    return Default(14f);
-                if (linkWeight == MetroDateTimeWeight.Bold)
-                    return DefaultBold(14f);
-            }
-            else if (linkSize == MetroDateTimeSize.Tall)
-            {
-                if (linkWeight == MetroDateTimeWeight.Light)
-                    return DefaultLight(18f);
-                if (linkWeight == MetroDateTimeWeight.Regular)
-                    return Default(18f);
-                if (linkWeight == MetroDateTimeWeight.Bold)
-                    return DefaultBold(18f);
+                case MetroDateTimeSize.Small:
+                    if (linkWeight == MetroDateTimeWeight.Light)
+                        return DefaultLight(12f);
+                    if (linkWeight == MetroDateTimeWeight.Regular)
+                        return Default(12f);
+                    if (linkWeight == MetroDateTimeWeight.Bold)
+                        return DefaultBold(12f);
+                    break;
+                case MetroDateTimeSize.Medium:
+                    if (linkWeight == MetroDateTimeWeight.Light)
+                        return DefaultLight(14f);
+                    if (linkWeight == MetroDateTimeWeight.Regular)
+                        return Default(14f);
+                    if (linkWeight == MetroDateTimeWeight.Bold)
+                        return DefaultBold(14f);
+                    break;
+                case MetroDateTimeSize.Tall:
+                    if (linkWeight == MetroDateTimeWeight.Light)
+                        return DefaultLight(18f);
+                    if (linkWeight == MetroDateTimeWeight.Regular)
+                        return Default(18f);
+                    if (linkWeight == MetroDateTimeWeight.Bold)
+                        return DefaultBold(18f);
+                    break;
             }
 
             return Default(12f);
@@ -380,32 +380,32 @@ namespace MetroFramework
 
         public static Font Label(MetroLabelSize labelSize, MetroLabelWeight labelWeight)
         {
-            if (labelSize == MetroLabelSize.Small)
+            switch (labelSize)
             {
-                if (labelWeight == MetroLabelWeight.Light)
-                    return DefaultLight(12f);
-                if (labelWeight == MetroLabelWeight.Regular)
-                    return Default(12f);
-                if (labelWeight == MetroLabelWeight.Bold)
-                    return DefaultBold(12f);
-            }
-            else if (labelSize == MetroLabelSize.Medium)
-            {
-                if (labelWeight == MetroLabelWeight.Light)
-                    return DefaultLight(14f);
-                if (labelWeight == MetroLabelWeight.Regular)
-                    return Default(14f);
-                if (labelWeight == MetroLabelWeight.Bold)
-                    return DefaultBold(14f);
-            }
-            else if (labelSize == MetroLabelSize.Tall)
-            {
-                if (labelWeight == MetroLabelWeight.Light)
-                    return DefaultLight(18f);
-                if (labelWeight == MetroLabelWeight.Regular)
-                    return Default(18f);
-                if (labelWeight == MetroLabelWeight.Bold)
-                    return DefaultBold(18f);
+                case MetroLabelSize.Small:
+                    if (labelWeight == MetroLabelWeight.Light)
+                        return DefaultLight(12f);
+                    if (labelWeight == MetroLabelWeight.Regular)
+                        return Default(12f);
+                    if (labelWeight == MetroLabelWeight.Bold)
+                        return DefaultBold(12f);
+                    break;
+                case MetroLabelSize.Medium:
+                    if (labelWeight == MetroLabelWeight.Light)
+                        return DefaultLight(14f);
+                    if (labelWeight == MetroLabelWeight.Regular)
+                        return Default(14f);
+                    if (labelWeight == MetroLabelWeight.Bold)
+                        return DefaultBold(14f);
+                    break;
+                case MetroLabelSize.Tall:
+                    if (labelWeight == MetroLabelWeight.Light)
+                        return DefaultLight(18f);
+                    if (labelWeight == MetroLabelWeight.Regular)
+                        return Default(18f);
+                    if (labelWeight == MetroLabelWeight.Bold)
+                        return DefaultBold(18f);
+                    break;
             }
 
             return DefaultLight(14f);
@@ -413,32 +413,32 @@ namespace MetroFramework
 
         public static Font TextBox(MetroTextBoxSize linkSize, MetroTextBoxWeight linkWeight)
         {
-            if (linkSize == MetroTextBoxSize.Small)
+            switch (linkSize)
             {
-                if (linkWeight == MetroTextBoxWeight.Light)
-                    return DefaultLight(12f);
-                if (linkWeight == MetroTextBoxWeight.Regular)
-                    return Default(12f);
-                if (linkWeight == MetroTextBoxWeight.Bold)
-                    return DefaultBold(12f);
-            }
-            else if (linkSize == MetroTextBoxSize.Medium)
-            {
-                if (linkWeight == MetroTextBoxWeight.Light)
-                    return DefaultLight(14f);
-                if (linkWeight == MetroTextBoxWeight.Regular)
-                    return Default(14f);
-                if (linkWeight == MetroTextBoxWeight.Bold)
-                    return DefaultBold(14f);
-            }
-            else if (linkSize == MetroTextBoxSize.Tall)
-            {
-                if (linkWeight == MetroTextBoxWeight.Light)
-                    return DefaultLight(18f);
-                if (linkWeight == MetroTextBoxWeight.Regular)
-                    return Default(18f);
-                if (linkWeight == MetroTextBoxWeight.Bold)
-                    return DefaultBold(18f);
+                case MetroTextBoxSize.Small:
+                    if (linkWeight == MetroTextBoxWeight.Light)
+                        return DefaultLight(12f);
+                    if (linkWeight == MetroTextBoxWeight.Regular)
+                        return Default(12f);
+                    if (linkWeight == MetroTextBoxWeight.Bold)
+                        return DefaultBold(12f);
+                    break;
+                case MetroTextBoxSize.Medium:
+                    if (linkWeight == MetroTextBoxWeight.Light)
+                        return DefaultLight(14f);
+                    if (linkWeight == MetroTextBoxWeight.Regular)
+                        return Default(14f);
+                    if (linkWeight == MetroTextBoxWeight.Bold)
+                        return DefaultBold(14f);
+                    break;
+                case MetroTextBoxSize.Tall:
+                    if (linkWeight == MetroTextBoxWeight.Light)
+                        return DefaultLight(18f);
+                    if (linkWeight == MetroTextBoxWeight.Regular)
+                        return Default(18f);
+                    if (linkWeight == MetroTextBoxWeight.Bold)
+                        return DefaultBold(18f);
+                    break;
             }
 
             return Default(12f);
@@ -446,32 +446,32 @@ namespace MetroFramework
 
         public static Font ProgressBar(MetroProgressBarSize labelSize, MetroProgressBarWeight labelWeight)
         {
-            if (labelSize == MetroProgressBarSize.Small)
+            switch (labelSize)
             {
-                if (labelWeight == MetroProgressBarWeight.Light)
-                    return DefaultLight(12f);
-                if (labelWeight == MetroProgressBarWeight.Regular)
-                    return Default(12f);
-                if (labelWeight == MetroProgressBarWeight.Bold)
-                    return DefaultBold(12f);
-            }
-            else if (labelSize == MetroProgressBarSize.Medium)
-            {
-                if (labelWeight == MetroProgressBarWeight.Light)
-                    return DefaultLight(14f);
-                if (labelWeight == MetroProgressBarWeight.Regular)
-                    return Default(14f);
-                if (labelWeight == MetroProgressBarWeight.Bold)
-                    return DefaultBold(14f);
-            }
-            else if (labelSize == MetroProgressBarSize.Tall)
-            {
-                if (labelWeight == MetroProgressBarWeight.Light)
-                    return DefaultLight(18f);
-                if (labelWeight == MetroProgressBarWeight.Regular)
-                    return Default(18f);
-                if (labelWeight == MetroProgressBarWeight.Bold)
-                    return DefaultBold(18f);
+                case MetroProgressBarSize.Small:
+                    if (labelWeight == MetroProgressBarWeight.Light)
+                        return DefaultLight(12f);
+                    if (labelWeight == MetroProgressBarWeight.Regular)
+                        return Default(12f);
+                    if (labelWeight == MetroProgressBarWeight.Bold)
+                        return DefaultBold(12f);
+                    break;
+                case MetroProgressBarSize.Medium:
+                    if (labelWeight == MetroProgressBarWeight.Light)
+                        return DefaultLight(14f);
+                    if (labelWeight == MetroProgressBarWeight.Regular)
+                        return Default(14f);
+                    if (labelWeight == MetroProgressBarWeight.Bold)
+                        return DefaultBold(14f);
+                    break;
+                case MetroProgressBarSize.Tall:
+                    if (labelWeight == MetroProgressBarWeight.Light)
+                        return DefaultLight(18f);
+                    if (labelWeight == MetroProgressBarWeight.Regular)
+                        return Default(18f);
+                    if (labelWeight == MetroProgressBarWeight.Bold)
+                        return DefaultBold(18f);
+                    break;
             }
 
             return DefaultLight(14f);
@@ -479,32 +479,32 @@ namespace MetroFramework
 
         public static Font TabControl(MetroTabControlSize labelSize, MetroTabControlWeight labelWeight)
         {
-            if (labelSize == MetroTabControlSize.Small)
+            switch (labelSize)
             {
-                if (labelWeight == MetroTabControlWeight.Light)
-                    return DefaultLight(12f);
-                if (labelWeight == MetroTabControlWeight.Regular)
-                    return Default(12f);
-                if (labelWeight == MetroTabControlWeight.Bold)
-                    return DefaultBold(12f);
-            }
-            else if (labelSize == MetroTabControlSize.Medium)
-            {
-                if (labelWeight == MetroTabControlWeight.Light)
-                    return DefaultLight(14f);
-                if (labelWeight == MetroTabControlWeight.Regular)
-                    return Default(14f);
-                if (labelWeight == MetroTabControlWeight.Bold)
-                    return DefaultBold(14f);
-            }
-            else if (labelSize == MetroTabControlSize.Tall)
-            {
-                if (labelWeight == MetroTabControlWeight.Light)
-                    return DefaultLight(18f);
-                if (labelWeight == MetroTabControlWeight.Regular)
-                    return Default(18f);
-                if (labelWeight == MetroTabControlWeight.Bold)
-                    return DefaultBold(18f);
+                case MetroTabControlSize.Small:
+                    if (labelWeight == MetroTabControlWeight.Light)
+                        return DefaultLight(12f);
+                    if (labelWeight == MetroTabControlWeight.Regular)
+                        return Default(12f);
+                    if (labelWeight == MetroTabControlWeight.Bold)
+                        return DefaultBold(12f);
+                    break;
+                case MetroTabControlSize.Medium:
+                    if (labelWeight == MetroTabControlWeight.Light)
+                        return DefaultLight(14f);
+                    if (labelWeight == MetroTabControlWeight.Regular)
+                        return Default(14f);
+                    if (labelWeight == MetroTabControlWeight.Bold)
+                        return DefaultBold(14f);
+                    break;
+                case MetroTabControlSize.Tall:
+                    if (labelWeight == MetroTabControlWeight.Light)
+                        return DefaultLight(18f);
+                    if (labelWeight == MetroTabControlWeight.Regular)
+                        return Default(18f);
+                    if (labelWeight == MetroTabControlWeight.Bold)
+                        return DefaultBold(18f);
+                    break;
             }
 
             return DefaultLight(14f);
@@ -512,32 +512,32 @@ namespace MetroFramework
 
         public static Font CheckBox(MetroCheckBoxSize linkSize, MetroCheckBoxWeight linkWeight)
         {
-            if (linkSize == MetroCheckBoxSize.Small)
+            switch (linkSize)
             {
-                if (linkWeight == MetroCheckBoxWeight.Light)
-                    return DefaultLight(12f);
-                if (linkWeight == MetroCheckBoxWeight.Regular)
-                    return Default(12f);
-                if (linkWeight == MetroCheckBoxWeight.Bold)
-                    return DefaultBold(12f);
-            }
-            else if (linkSize == MetroCheckBoxSize.Medium)
-            {
-                if (linkWeight == MetroCheckBoxWeight.Light)
-                    return DefaultLight(14f);
-                if (linkWeight == MetroCheckBoxWeight.Regular)
-                    return Default(14f);
-                if (linkWeight == MetroCheckBoxWeight.Bold)
-                    return DefaultBold(14f);
-            }
-            else if (linkSize == MetroCheckBoxSize.Tall)
-            {
-                if (linkWeight == MetroCheckBoxWeight.Light)
-                    return DefaultLight(18f);
-                if (linkWeight == MetroCheckBoxWeight.Regular)
-                    return Default(18f);
-                if (linkWeight == MetroCheckBoxWeight.Bold)
-                    return DefaultBold(18f);
+                case MetroCheckBoxSize.Small:
+                    if (linkWeight == MetroCheckBoxWeight.Light)
+                        return DefaultLight(12f);
+                    if (linkWeight == MetroCheckBoxWeight.Regular)
+                        return Default(12f);
+                    if (linkWeight == MetroCheckBoxWeight.Bold)
+                        return DefaultBold(12f);
+                    break;
+                case MetroCheckBoxSize.Medium:
+                    if (linkWeight == MetroCheckBoxWeight.Light)
+                        return DefaultLight(14f);
+                    if (linkWeight == MetroCheckBoxWeight.Regular)
+                        return Default(14f);
+                    if (linkWeight == MetroCheckBoxWeight.Bold)
+                        return DefaultBold(14f);
+                    break;
+                case MetroCheckBoxSize.Tall:
+                    if (linkWeight == MetroCheckBoxWeight.Light)
+                        return DefaultLight(18f);
+                    if (linkWeight == MetroCheckBoxWeight.Regular)
+                        return Default(18f);
+                    if (linkWeight == MetroCheckBoxWeight.Bold)
+                        return DefaultBold(18f);
+                    break;
             }
 
             return Default(12f);
@@ -545,32 +545,32 @@ namespace MetroFramework
 
         public static Font Button(MetroButtonSize linkSize, MetroButtonWeight linkWeight)
         {
-            if (linkSize == MetroButtonSize.Small)
+            switch (linkSize)
             {
-                if (linkWeight == MetroButtonWeight.Light)
-                    return DefaultLight(11f);
-                if (linkWeight == MetroButtonWeight.Regular)
-                    return Default(11f);
-                if (linkWeight == MetroButtonWeight.Bold)
-                    return DefaultBold(11f);
-            }
-            else if (linkSize == MetroButtonSize.Medium)
-            {
-                if (linkWeight == MetroButtonWeight.Light)
-                    return DefaultLight(13f);
-                if (linkWeight == MetroButtonWeight.Regular)
-                    return Default(13f);
-                if (linkWeight == MetroButtonWeight.Bold)
-                    return DefaultBold(13f);
-            }
-            else if (linkSize == MetroButtonSize.Tall)
-            {
-                if (linkWeight == MetroButtonWeight.Light)
-                    return DefaultLight(16f);
-                if (linkWeight == MetroButtonWeight.Regular)
-                    return Default(16f);
-                if (linkWeight == MetroButtonWeight.Bold)
-                    return DefaultBold(16f);
+                case MetroButtonSize.Small:
+                    if (linkWeight == MetroButtonWeight.Light)
+                        return DefaultLight(11f);
+                    if (linkWeight == MetroButtonWeight.Regular)
+                        return Default(11f);
+                    if (linkWeight == MetroButtonWeight.Bold)
+                        return DefaultBold(11f);
+                    break;
+                case MetroButtonSize.Medium:
+                    if (linkWeight == MetroButtonWeight.Light)
+                        return DefaultLight(13f);
+                    if (linkWeight == MetroButtonWeight.Regular)
+                        return Default(13f);
+                    if (linkWeight == MetroButtonWeight.Bold)
+                        return DefaultBold(13f);
+                    break;
+                case MetroButtonSize.Tall:
+                    if (linkWeight == MetroButtonWeight.Light)
+                        return DefaultLight(16f);
+                    if (linkWeight == MetroButtonWeight.Regular)
+                        return Default(16f);
+                    if (linkWeight == MetroButtonWeight.Bold)
+                        return DefaultBold(16f);
+                    break;
             }
 
             return Default(11f);

@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2010
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetroFramework", "MetroFramework\MetroFramework.csproj", "{BB41AC8B-CBED-4387-A7E0-4567EDB3F57F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetroFramework.Demo", "MetroFramework.Demo\MetroFramework.Demo.csproj", "{AF988819-4618-4852-9506-C1D06D04F6B2}"
@@ -10,6 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		build.cmd = build.cmd
 		CHANGELOG.md = CHANGELOG.md
 		LICENSE.md = LICENSE.md
+		..\..\..\Pictures\metroframework.png = ..\..\..\Pictures\metroframework.png
 		MetroFramework.Public.snk = MetroFramework.Public.snk
 		MetroFramework.snk = MetroFramework.snk
 		README.md = README.md
